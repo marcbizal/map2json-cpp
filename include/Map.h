@@ -15,7 +15,7 @@ class Map
 private:
 	typedef struct MAP_HEADER
 	{
-		char MAP[4];
+		char MAP[3];
 		unsigned long chunkSize;
 		unsigned long width;
 		unsigned long height;
@@ -35,4 +35,3 @@ public:
 	void loadBinary(const string &filename);
 	std::string& getJSON();
 };
-

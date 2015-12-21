@@ -40,8 +40,8 @@ void Map::loadBinary(const string &filename)
 		}
 
 		std::cout	<< "Loaded \"" << filename.c_str() << "\":"
-					<< "\nwidth: " << header.width 
-					<< "\nheight: " << header.height 
+					<< "\nwidth: " << header.width
+					<< "\nheight: " << header.height
 					<< "\nchunk size: " << header.chunkSize
 					<< "\n\n";
 
@@ -52,10 +52,10 @@ void Map::loadBinary(const string &filename)
 			for (int x = 0; x < header.width; x++)
 			{
 				map_file->read((char*)&currentBlock, sizeof(unsigned short));
-				
+
 				// In some of the game files ground is actually soil...
 				if (currentBlock == 5 && FIX_SOIL) currentBlock = 0;
-				
+
 				tile_[y][x] = currentBlock;
 			}
 		}

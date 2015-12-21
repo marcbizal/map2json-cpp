@@ -17,6 +17,23 @@ std::string to_lower(const std::string &s)
 	return ret;
 }
 
+std::vector<std::string> split(string &s, const string &delim)
+{
+	std::vector<std::string> tokens;
+
+	size_t current;
+	size_t next = -1;
+	do
+	{
+		current = next + 1;
+		next = s.find_first_of(delim, current);
+		tokens.push_back(s.substr(current, next - current));
+	}
+	while(next != string::npos);
+
+	return tokens;
+}
+
 // CLASS IMPLEMENTATION
 
 Writer::Writer(const std::string &input_folder)
@@ -32,7 +49,13 @@ Writer::Writer(const std::string &input_folder)
 		boost::smatch match;
 		if (boost::regex_search(filename, match, MAP_FILTER))
 		{
-			map_[match[0]] = Map(iterator->path().string());
+			std::vector<std::string> tokens = split(filename, "_.");
+
+			std::string map_type = tokens[MAP_TYPE];
+			to_lower(map_type);
+
+			std::cout << map_type << std::endl;
+			map_[map_type] = Map(iterator->path().string());
 		}
 	}
 }
