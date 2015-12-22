@@ -17,6 +17,7 @@ int main(int argc, char* argv[])
 			("version,v", "print version string")
 			("input,i", po::value<string>(), "name of legacy map source folder")
 			("output,o", po::value<string>(), "name of output json file")
+            ("pad-zeros,p", "pad output nodes with zeros")
 		;
 
 		po::variables_map vm;
@@ -47,13 +48,15 @@ int main(int argc, char* argv[])
 			return 1;
 		}
 
+        bool padZeros = vm.count("pad-zeros");
+
 		if (vm.count("output"))
 		{
-			jsonWriter->saveAs(vm["output"].as<string>());
+			jsonWriter->saveAs(vm["output"].as<string>(), padZeros);
 		}
 		else
 		{
-			jsonWriter->save();
+			jsonWriter->save(padZeros);
 		}
 		delete jsonWriter;
 	}

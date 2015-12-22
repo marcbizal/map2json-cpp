@@ -15,23 +15,20 @@ class Map
 private:
 	typedef struct MAP_HEADER
 	{
-		char MAP[3];
-		unsigned long chunkSize;
-		unsigned long width;
-		unsigned long height;
+		char MAP[4];
+		uint32_t chunkSize;
+		uint32_t width;
+		uint32_t height;
 	};
 
-	vector<vector<unsigned int>> tile_;
-	unsigned int width_; unsigned int height_;
-	string json_;
-
-	void jsonify();
+	vector<vector<uint32_t>> tile_;
+	uint32_t width_; uint32_t height_;
 public:
 	Map();
 	Map(string filename);
 	~Map();
-	unsigned int getWidth() { return width_; }
-	unsigned int getHeight() { return height_; }
+	uint32_t getWidth() { return width_; }
+	uint32_t getHeight() { return height_; }
 	void loadBinary(const string &filename);
-	std::string& getJSON();
+	std::string jsonify(const bool padZeros);
 };

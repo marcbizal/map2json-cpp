@@ -24,6 +24,6 @@ public:
 	Writer(const std::string &input_folder);
 	~Writer();
 
-	void saveAs(const std::string &output_file);
-	void save();
+	void saveAs(const std::string &output_file, const bool padZeros);
+	void save(const bool padZeros);
 };

@@ -1,5 +1,4 @@
 #include "Map.h"
-
 // UTILITY FUNCTIONS
 
 std::string padWithZeros(const unsigned int numZeros, const std::string &original)
@@ -46,12 +45,12 @@ void Map::loadBinary(const string &filename)
 					<< "\n\n";
 
 		// Loop through the file reading two bytes at a time.
-		unsigned short currentBlock;
+		uint16_t currentBlock;
 		for (int y = 0; y < header.height; y++)
 		{
 			for (int x = 0; x < header.width; x++)
 			{
-				map_file->read((char*)&currentBlock, sizeof(unsigned short));
+				map_file->read((char*)&currentBlock, sizeof(uint16_t));
 
 				// In some of the game files ground is actually soil...
 				if (currentBlock == 5 && FIX_SOIL) currentBlock = 0;
@@ -66,29 +65,25 @@ void Map::loadBinary(const string &filename)
 	}
 
 	map_file->close();
-	jsonify();
 }
 
-void Map::jsonify()
+std::string Map::jsonify(const bool padZeros = false)
 {
-	json_ = "";
+	std::string json = "";
 
-	json_ += "[\n";
+	json += "[\n";
 	for (int y = 0; y < height_; y++)
 	{
-		json_ += "\t[";
+		json += "\t[";
 
 		for (int x = 0; x < width_; x++)
 		{
-			json_ += padWithZeros(2, std::to_string(tile_[y][x]));
-			if (x + 1 != width_) json_ += ", ";
+			json += (padZeros ? padWithZeros(2, std::to_string(tile_[y][x])) : std::to_string(tile_[y][x]));
+			if (x + 1 != width_) json += ", ";
 		}
-		json_ += "],\n";
+		json += "],\n";
 	}
-	json_ += "]";
-}
+	json += "]";
 
-std::string& Map::getJSON()
-{
-	return json_;
+	return json;
 }

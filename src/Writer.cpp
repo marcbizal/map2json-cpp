@@ -54,7 +54,7 @@ Writer::Writer(const std::string &input_folder)
 			std::string map_type = tokens[MAP_TYPE];
 			to_lower(map_type);
 
-			std::cout << map_type << std::endl;
+			//std::cout << map_type << std::endl;
 			map_[map_type] = Map(iterator->path().string());
 		}
 	}
@@ -65,7 +65,7 @@ Writer::~Writer()
 
 }
 
-void Writer::saveAs(const std::string &output_file)
+void Writer::saveAs(const std::string &output_file, const bool padZeros = false)
 {
 	fstream jsonFile;
 	jsonFile.open(output_file, std::ios::out | std::ios::trunc);
@@ -83,7 +83,7 @@ void Writer::saveAs(const std::string &output_file)
 		std::string mapJSON;
 		for (auto it = map_.begin(); it != map_.end(); it++)
 		{
-			mapJSON = it->second.getJSON();
+			mapJSON = it->second.jsonify(padZeros);
 			jsonFile << to_lower(it->first) << ": " << mapJSON;
 
 			if (next(it) != map_.end()) jsonFile << ",\n";
@@ -99,7 +99,7 @@ void Writer::saveAs(const std::string &output_file)
 	jsonFile.close();
 }
 
-void Writer::save()
+void Writer::save(const bool padZeros = false)
 {
-	saveAs(name_ + ".js");
+	saveAs(name_ + ".js", padZeros);
 }
