@@ -2,7 +2,7 @@
 A command line conversion tool to convert binary .map files used in Lego Rock Raiders to a JSON format usable by [Raiders](https://github.com/marcbizal/Raiders).
 
 ## Build Instructions
-To build map2json on unix systems, please use the following commands:
+To build `map2json` on unix systems, please use the following commands:
 
 ```bash
 git clone https://github.com/marcbizal/map2json.git
@@ -11,7 +11,7 @@ cmake
 make && sudo make install
 ```
 
-For non-unix systems, generate a build solution using cmake for your preferred toolset (i. e. `cmake -G "Visual Studio 13 Win64"`),
+For non-unix systems, generate a build solution using cmake for your preferred toolset (e.g. `cmake -G "Visual Studio 13 Win64"`),
 and build the solution. Once built, copy the executable to a folder included in your system PATH.
 
 ## Usage

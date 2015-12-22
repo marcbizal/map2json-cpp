@@ -8,6 +8,8 @@ using namespace std;
 #include <boost/program_options.hpp>
 namespace po = boost::program_options;
 
+#include "config.h"
+
 int main(int argc, char* argv[])
 {
 	try {
@@ -32,7 +34,7 @@ int main(int argc, char* argv[])
 
 		if (vm.count("version"))
 		{
-			cout << "0.0.1" << endl;
+			cout << VERSION << endl;
 			return 0;
 		}
 
