@@ -75,16 +75,16 @@ void Writer::saveAs(const std::string &output_file, const bool padZeros = false)
 		jsonFile << "{\n";
 
 		// Write header information
-		jsonFile << "name: '" << name_ << "',\n";
-		jsonFile << "width: " << map_["surf"].getWidth() << ",\n";
-		jsonFile << "height: " << map_["surf"].getHeight() << ",\n";
+		jsonFile << "\"name\": \"" << name_ << "\",\n";
+		jsonFile << "\"width\": " << map_["surf"].getWidth() << ",\n";
+		jsonFile << "\"height\": " << map_["surf"].getHeight() << ",\n";
 
 		// Write actual map data
 		std::string mapJSON;
 		for (auto it = map_.begin(); it != map_.end(); it++)
 		{
 			mapJSON = it->second.jsonify(padZeros);
-			jsonFile << to_lower(it->first) << ": " << mapJSON;
+			jsonFile << "\"" << to_lower(it->first) << "\": " << mapJSON;
 
 			if (next(it) != map_.end()) jsonFile << ",\n";
 		}
@@ -101,5 +101,5 @@ void Writer::saveAs(const std::string &output_file, const bool padZeros = false)
 
 void Writer::save(const bool padZeros = false)
 {
-	saveAs(name_ + ".js", padZeros);
+	saveAs(name_ + ".json", padZeros);
 }

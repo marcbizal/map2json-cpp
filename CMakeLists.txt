@@ -6,7 +6,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 set(MAJOR_VERSION 1)
 set(MINOR_VERSION 0)
-set(PATCH_VERSION 0)
+set(PATCH_VERSION 1)
 set(VERSION ${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION})
 
 find_package(Boost REQUIRED COMPONENTS program_options system filesystem regex)
@@ -25,5 +25,5 @@ if(Boost_FOUND)
     )
 
     # Set the location for binary installation -- i.e., /usr/bin in this case
-    install(TARGETS map2json DESTINATION /usr/bin)
+    install(TARGETS map2json DESTINATION /usr/local/bin)
 endif()

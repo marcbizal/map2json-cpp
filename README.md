@@ -15,8 +15,6 @@ For non-unix systems, generate a build solution using cmake for your preferred t
 and build the solution. Once built, copy the executable to a folder included in your system PATH.
 
 ## Usage
-
-
 ```
 -h [ --help ]         print help docs
 -v [ --version ]      print version string

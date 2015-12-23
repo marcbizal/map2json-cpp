@@ -81,7 +81,7 @@ std::string Map::jsonify(const bool padZeros = false)
 			json += (padZeros ? padWithZeros(2, std::to_string(tile_[y][x])) : std::to_string(tile_[y][x]));
 			if (x + 1 != width_) json += ", ";
 		}
-		json += "],\n";
+		json += (y == height_ - 1 ? "]\n" : "],\n");
 	}
 	json += "]";
 
