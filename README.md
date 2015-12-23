@@ -1,5 +1,7 @@
-# map2json
-A command line conversion tool to convert binary .map files used in Lego Rock Raiders to a JSON format usable by [Raiders](https://github.com/marcbizal/Raiders).
+# map2json-cpp
+A command line conversion tool written in C++ to convert binary .map files used in Lego Rock Raiders to a JSON format usable by [Raiders](https://github.com/marcbizal/Raiders). 
+
+*This version of `map2json` is being deprecated in favor of a NodeJS alternative.*
 
 ## Build Instructions
 To build `map2json` on unix systems, please use the following commands:
