@@ -7,8 +7,8 @@ A command line conversion tool written in C++ to convert binary .map files used 
 To build `map2json` on unix systems, please use the following commands:
 
 ```bash
-git clone https://github.com/marcbizal/map2json.git
-cd map2json
+git clone https://github.com/marcbizal/map2json-cpp.git
+cd map2json-cpp
 cmake
 make && sudo make install
 ```
